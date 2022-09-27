@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import {Box, Stack, Typography} from '@mui/material'
-import SideBar from './SideBar'
+import {SideBar, Videos} from './'
 
 
 //..The feed will contain 2 parts. The side  (left side) and video field on the left side
@@ -26,11 +26,8 @@ const Feed = () => {
            mb={2} sx={{ color:'white'}}>
           New <span style={{ color: '#F31503'}}>Videos</span>
           </Typography>
+          <Videos videos={[]}/>
         </Box>
-
-        
-
-
     </Stack>
   )
 }
