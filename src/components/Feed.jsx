@@ -18,8 +18,18 @@ const Feed = () => {
           sx={{mt: 1.5, color: '#fff'}}>
             Copyright 2022 goNativeTech
           </Typography>
-
         </Box>
+
+        {/* Video Feed Title */}
+        <Box p={2} sx={{overflowY: 'auto', height: '90vh', flex: 2}}> 
+          <Typography variant='h4' fontWeight='bold'
+           mb={2} sx={{ color:'white'}}>
+          New <span style={{ color: '#F31503'}}>Videos</span>
+          </Typography>
+        </Box>
+
+        
+
 
     </Stack>
   )
