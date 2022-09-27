@@ -8,12 +8,16 @@ import {fetchAPI} from './utils/fetchAPI'
 const Feed = () => {
 
   //..using useState hook
-  const [selectedCategory, setselectedCategory] = useState('New')
-  
+  const [selectedCategory, 
+    setselectedCategory] = useState('New')
+  const [videos, setVideos] = useState([null])
+
   //..useEffect is a lifecycle hook which gets called whenever our component loads 
   useEffect(() =>{
     //..wrap it in a template string to make it dynamic
+    //.. .then() will return the async function fetchAPI when called
     fetchAPI(`search?part=snippet&q=${selectedCategory}`)
+    .then((data) => setVideos(data.items))
   }, [selectedCategory])
   
   return (
@@ -41,7 +45,7 @@ const Feed = () => {
            mb={2} sx={{ color:'white'}}>
         {selectedCategory} <span style={{ color: '#F31503'}}>Videos</span>
           </Typography>
-          <Videos videos={[]}/>
+          <Videos videos={videos}/>
         </Box>
     </Stack>
   )
