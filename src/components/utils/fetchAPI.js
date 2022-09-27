@@ -1,10 +1,9 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://youtube-v31.p.rapidapi.com/search'
+const BASE_URL = 'https://youtube-v31.p.rapidapi.com'
 
 //..options object pasted from RapidAPI
 const options = {
-    url: BASE_URL,
     params: {
       maxResults: '50'
     },
@@ -16,8 +15,8 @@ const options = {
 
   //..Whatever request we make we are going to start from the BASE_URL
   //..This function allow us to fetch our API and call it dynamically into our app
-  
-  export const fetchApi = async(url) => {
+
+  export const fetchAPI = async(url) => {
     const  {data} = await axios.get(`${BASE_URL}/${url}`, 
     options)
 
