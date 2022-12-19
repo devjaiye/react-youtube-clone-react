@@ -4,14 +4,21 @@ import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { Link, useParams } from 'react-router-dom'
 import { fetchAPI } from './utils/fetchAPI'
+import {Videos} from './'
 
 const VideoDetail = () => {
-    const [videoDetail, setVideoDetail] = useState()
+    const [videoDetail, setVideoDetail] = useState(null)
+    const [videos, setVideos] = useState(null)
     const {id} = useParams()
+
 
     useEffect(() =>{
         fetchAPI(`videos?part=snippet,statistics&id=${id}`)
         .then((data) => setVideoDetail(data?.items[0]))
+
+        //...fetch related videos on the right side 
+        fetchAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`)
+        .then((data) => setVideos(data.items))
     },[id])
 
    
@@ -54,6 +61,11 @@ const VideoDetail = () => {
                         </Stack>
                     </Box>
                 </Box>
+                 {/* render related videos */}
+            <Box px={2} py={{md: 1, xs: 5}} justifyContent="center"
+            alignItems= "center">
+                <Videos videos={videos} direction="column"/>
+            </Box>
             </Stack>
         </Box>
     )
